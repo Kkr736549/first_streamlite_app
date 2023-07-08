@@ -23,11 +23,12 @@ fruits_to_show = my_fruit_list.loc[fruits_selected]
 
 # Display the table on the page.
 streamlit.dataframe(fruits_to_show) 
+
 # create the repeatable code blocked (function)
 def get_fruityvice_data (this_fruit_choice):
      fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + this_fruit_choice)
      fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
-     return(fruityvice_normalized)
+     return fruityvice_normalized
 
 #New section display fruityvice API responce
 
@@ -47,7 +48,7 @@ streamlit.stop()
 
 #import snowflake.connector 
 
-# snowflake related function
+# snowflake_related function
 def get_fruit_load_list():
      with  my_cnx.cursor() as my_cur: 
            my_cur.execute("SELECT * from fruit_load_list")
